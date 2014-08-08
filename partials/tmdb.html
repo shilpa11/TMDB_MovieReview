@@ -1,0 +1,19 @@
+<h1>Movie Search and Review</h1>
+<div class="inp">
+   <input type="text" ng-model="inp_movie_search" ng-keydown="getMovie($event)" placeholder="search for a movie..."/>
+</div>
+<div id="results" ng-repeat="movie in movies">
+
+    <div id ="innerwrap" >
+
+        <div class="summary">
+            <div>Title: {{movie.title}}</div>
+            <div>Release Date: {{movie.release_date}}</div>
+
+        </div>
+        <a href="#/search/details/{{movie.id}}">
+        <img ng-src="{{movie.poster_path}}"/></a>
+
+    </div>
+
+</div>

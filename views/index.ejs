@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="/css/base.css">
+    <script src="/js/configuration.js"></script>
+    <script src="/angular/angular.js"></script>
+    <script src="/angular-route/angular-route.js"></script>
+    <script src="/js/controller.js"></script>
+
+    <script>
+
+        var myApp = angular.module('myApp',['ngRoute','tmdbApp']);
+
+        myApp.config(['$routeProvider', function(rp){
+            rp.when('/search',{
+                templateUrl:'/tmdb.html',
+                controller:'TmdbCtrl'
+            }).when('/search/details/:id',{
+                templateUrl:'/tmdbDetails.html',
+                controller:'TmdbDetailCtrl'
+            }).otherwise({
+                redirectTo:'/search'
+            });
+
+
+        }]);
+
+
+
+
+
+
+    </script>
+</head>
+<body>
+<div ng-view="">
+
+
+</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<div class="wrapper">
+    <img ng-src="{{movies.poster_path}}"/>
+    <div class="details">
+        <div>Title: {{movies.title}}</div>
+        <div>Tag Line: {{movies.tagline}}</div>
+        <div>Release Date: {{movies.release_date}}</div>
+        <div>Status: {{movies.status}}</div>
+        <div>Home Page: {{movies.homepage}}</div>
+        <div>Overview: {{movies.overview}}</div>
+
+    </div>
+    <div class="review">
+        <form name="review" method="post" ng-submit="postData($event)" novalidate>
+            E-mail:
+            <input type="email" ng-model="email" name="uEmail" required/><br />
+            <div ng-show="review.uEmail.$dirty && review.uEmail.$invalid">Invalid:
+                <span ng-show="review.uEmail.$error.required">Tell us your email.</span>
+                <span ng-show="review.uEmail.$error.email">This is not a valid email.</span>
+            </div>
+            Review:
+            <textarea name="reviewData" ng-model="reviewData" rows="8" cols="70" ng-minlength="10" ng-maxlength="160" required></textarea><br />
+            <span class="error" ng-show="review.reviewData.$error.minlength">
+            Too short!</span>
+            <span class="error" ng-show="review.reviewData.$error.maxlength">
+            Too long!</span><br>
+            <button type="submit" name="submit" ng-disabled="review.$invalid">Submit</button>
+        </form>
+
+    </div>
+
+
+    <div class="showreviews" ng-repeat="data in showdata">
+       <p>{{data.email}}</p>
+        <p>{{data.review | unescape}}</p>
+
+    </div>
+
+
+</div>
