@@ -23,12 +23,12 @@ router.post('/', function (req, res) {
         email: req.body.email,
         review: req.body.review,
         movieid: Number(req.body.movieid)
-    })).save(function (err) {
+    })).save(function (err, result) {
 
             if (err) {
                 res.json(500, { message: 'Could not connect to the database.'});
             } else {
-                res.json(200, { message: 'Succesfully updated data ... ' });
+                res.json(200, { message: 'Succesfully updated data ... ', details: result});
             }
         });
 });

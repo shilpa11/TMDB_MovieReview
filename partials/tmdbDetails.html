@@ -1,39 +1,60 @@
-<div class="wrapper">
-    <img ng-src="{{movies.poster_path}}"/>
-    <div class="details">
-        <div>Title: {{movies.title}}</div>
-        <div>Tag Line: {{movies.tagline}}</div>
-        <div>Release Date: {{movies.release_date}}</div>
-        <div>Status: {{movies.status}}</div>
-        <div>Home Page: {{movies.homepage}}</div>
-        <div>Overview: {{movies.overview}}</div>
-
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Movie Search and Review</a>
+        </div>
     </div>
-    <div class="review">
-        <form name="review" method="post" ng-submit="postData($event)" novalidate>
-            E-mail:
-            <input type="email" ng-model="email" name="uEmail" required/><br />
-            <div ng-show="review.uEmail.$dirty && review.uEmail.$invalid">Invalid:
-                <span ng-show="review.uEmail.$error.required">Tell us your email.</span>
-                <span ng-show="review.uEmail.$error.email">This is not a valid email.</span>
-            </div>
-            Review:
-            <textarea name="reviewData" ng-model="reviewData" rows="8" cols="70" ng-minlength="10" ng-maxlength="160" required></textarea><br />
-            <span class="error" ng-show="review.reviewData.$error.minlength">
-            Too short!</span>
-            <span class="error" ng-show="review.reviewData.$error.maxlength">
-            Too long!</span><br>
-            <button type="submit" name="submit" ng-disabled="review.$invalid">Submit</button>
-        </form>
-
-    </div>
-
-
-    <div class="showreviews" ng-repeat="data in showdata">
-       <p>{{data.email}}</p>
-        <p>{{data.review | unescape}}</p>
-
-    </div>
-
-
 </div>
+<div class="container">
+<div class="row">
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <img ng-src="{{movies.poster_path}}" alt="..." style="width: 100%;">
+                <div class="caption">
+                    <h3>{{movies.title}}</h3>
+                    <p>{{movies.overview}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-7">
+            <form class="form-horizontal" role="form" name="review" method="post" ng-submit="postData($event)" novalidate >
+                <legend>Please review the movie</legend>
+                <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                <div class="col-sm-10">
+                <input type="email" class="form-control" id="inputEmail3" placeholder="Email" ng-model="email" name="uEmail" required>
+                <div ng-show="review.uEmail.$dirty && review.uEmail.$invalid">Invalid:
+                        <span ng-show="review.uEmail.$error.required">Tell us your email.</span>
+                        <span ng-show="review.uEmail.$error.email">This is not a valid email.</span>
+                 </div>
+                </div>
+                </div>
+            <div class="form-group">
+                <label for="textarea3" class="col-sm-2 control-label">Review</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" id="textarea3" name="reviewData" ng-model="reviewData" rows="8" cols="70" ng-minlength="10" ng-maxlength="160" required></textarea>
+                    <span class="error" ng-show="review.reviewData.$error.minlength">Must be atleast 10 characters</span>
+                    <span class="error" ng-show="review.reviewData.$error.maxlength">Too long!</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" name="submit" ng-disabled="review.$invalid" class="btn btn-default">Submit</button>
+                </div>
+            </div>
+            <legend>Customer Reviews</legend>
+            <div class="form-group" ng-repeat="data in showdata">
+            <div class="well well-sm">{{data.email}} says {{data.review | unescape}}</div>
+            </div>
+         </form>
+       </div>
+</div>
+</div><!-- /.container -->
+
+

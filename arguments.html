@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        function createCar(Car,bus){
+
+            //Dependency is car
+
+        }
+
+        function dependencyResolver(fn){
+            //take a function as an input
+            console.log('Dependencies of the fn ' + fn.name + ' are...' + '....');
+            var fn = fn.toString();
+            var a = fn.indexOf('(');
+            var b = fn.indexOf(')');
+
+
+            var c = fn.slice(a+1,b);
+            console.log(c);
+
+            var d = c.split(',');
+
+
+            console.log(d);
+
+
+
+        }
+
+        dependencyResolver(createCar)
+    </script>
+</head>
+<body>
+
+</body>
+</html>

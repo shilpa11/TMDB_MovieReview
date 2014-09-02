@@ -1,0 +1,19 @@
+body {
+    padding-top: 70px;
+    padding-bottom: 20px;
+}
+div.summary{
+    position:absolute;
+    bottom:1.5em;
+    color:transparent;
+    font-size: 1em;
+    padding: 1em;
+    background-color: transparent;
+    width:265px;
+}
+div.innerwrap:hover > div.summary{
+    color: #ffffff;
+    background-color : rgba(0,0,0,0.5);
+    -moz-transition : all 500ms ease;
+}
+

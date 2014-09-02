@@ -2,3 +2,6 @@ bower_components/
 node_modules/
 public/js/configuration.js
 .idea
+partials/tmdbDetails_old.html
+partials/tmdb_old.html
+public/css/base.css

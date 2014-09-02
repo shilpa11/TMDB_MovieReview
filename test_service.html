@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Services</title>
+    <script src="bower_components/angular/angular.js"></script>
+    <script>
+        //value, factory, service recipes to create angular web services
+        //singleton and serviceloctor
+       var myApp =  angular.module('myApp',[]).controller('MyCtrl', function ($scope, votes, upvote,upvote1) {
+            $scope.message = "Hello";
+            $scope.votes = votes;
+            $scope.upvote = upvote;
+           $scope.upvote1 = upvote1;
+        }).controller('MyCtrl2', function ($scope,upvote,upvote1) {
+            $scope.message="Hello";
+           $scope.upvote = upvote;
+           $scope.upvote1 = upvote1;
+        }).value('votes',123);
+
+        myApp.factory('upvote', function (votes,$window) {
+
+            return function () {
+
+                $window.alert('Number of votes:' + ++votes);
+            }
+        });
+
+        myApp.service('upvote1',votesConstructor);
+
+        function votesConstructor(votes,$window) {
+            return function () {
+                $window.alert('Number of votes:' + ++votes);
+            }
+
+        }
+    </script>
+</head>
+<body>
+<div ng-controller="MyCtrl">
+   <span>{{message}}</span>
+    <span>{{votes}}</span>
+    <button ng-click="upvote1()">upVote</button>
+</div>
+<div ng-controller="MyCtrl2">
+    <span>{{message}}</span>
+    <button ng-click="upvote1()">upVote</button>
+
+</div>
+</body>
+</html>
