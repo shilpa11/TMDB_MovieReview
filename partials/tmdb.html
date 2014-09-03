@@ -21,7 +21,8 @@
 </div>
 <div class="container">
 <div class="row" ng-repeat="i in movies.range()">
-    <div class="col-xs-6 col-md-3 innerwrap" ng-repeat="movie in movies.slice(i,i+4)">
+    <div class="col-xs-12 col-md-3" ng-repeat="movie in movies.slice(i,i+4)">
+        <div class="innerwrap">
         <div class="summary">
             <div>Title: {{movie.title}}</div>
             <div>Release Date: {{movie.release_date}}</div>
@@ -30,6 +31,7 @@
             <img ng-src="{{movie.poster_path}}" alt="{{movie.title}}">
         </a>
     </div>
+        </div>
 </div>
 </div>
 

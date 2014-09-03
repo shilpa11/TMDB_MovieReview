@@ -4,7 +4,7 @@ body {
 }
 div.summary{
     position:absolute;
-    bottom:1.5em;
+    bottom:0;
     color:transparent;
     font-size: 1em;
     padding:1em;
