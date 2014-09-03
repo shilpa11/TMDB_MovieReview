@@ -7,9 +7,9 @@ div.summary{
     bottom:1.5em;
     color:transparent;
     font-size: 1em;
-    padding: 1em;
+    padding:1em;
     background-color: transparent;
-    width:265px;
+    width:100%;
 }
 div.innerwrap:hover > div.summary{
     color: #ffffff;
@@ -17,3 +17,16 @@ div.innerwrap:hover > div.summary{
     -moz-transition : all 500ms ease;
 }
 
+
+div.innerwrap {
+    position: relative;
+    text-align: center;
+    /*padding-left:0;
+    padding-right:0;*/
+
+
+}
+
+img{
+    width: 100%;
+}

@@ -13,6 +13,12 @@ tmdbApp.filter('unescape', function () {
         if(event.keyCode === 13){
             http.get('http://api.themoviedb.org/3/search/movie?api_key=' + api_key + '&query=' + sc.inp_movie_search).success(function (data) {
                 sc.movies=data.results;
+                sc.movies.range = function() {
+                    var range = [];
+                    for( var i = 0; i < sc.movies.length; i = i + 4 )
+                        range.push(i);
+                    return range;
+                }
                 sc.movies.forEach(function(elem){
                     if(!elem.poster_path){
                         elem.poster_path = "/img/image_not_found.png";
@@ -21,8 +27,12 @@ tmdbApp.filter('unescape', function () {
                     }
                 });
             });
+
         }
+
+
     }
+
    }]);
 tmdbApp.controller('TmdbDetailCtrl',['$scope', '$http', '$routeParams', function(sc, http, routeparam){
         http.get('http://api.themoviedb.org/3/movie/' + routeparam.id + '?api_key=' + api_key)
@@ -38,7 +48,6 @@ tmdbApp.controller('TmdbDetailCtrl',['$scope', '$http', '$routeParams', function
         http.get('http://localhost:3000/reviews/' + routeparam.id)
             .success(function (data) {
                     sc.showdata = data;
-                console.log((sc.showdata[0]));
             });
             sc.email = "";
             sc.reviewData  = "";
@@ -51,8 +60,7 @@ tmdbApp.controller('TmdbDetailCtrl',['$scope', '$http', '$routeParams', function
             });
 
             var obj={email : sc.email, review : str_san, movieid: sc.movieid};
-            http.post('http://localhost:3000/reviews', obj).success(function (data) {
-                console.log(data);
+        http.post('http://localhost:3000/reviews', obj).success(function (data) {
                 sc.showdata.unshift(data.details);
             });
             sc.email = "";
